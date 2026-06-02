@@ -1,24 +1,14 @@
-'use client';
+import ShoppingCartList from './ShoppingCartList';
 
-import { useState } from 'react';
-import { products } from '../product-data';
-import Link from 'next/link';
-
-export default function CartPage() {
-    const [cartIds] = useState(['123', '345']);
-
-    const cardProducts = cartIds.map(id => products.find(p => p.id === id)!);
-
+export default async function CartPage() {
+    const response = await fetch('https://wgbk62qn-3000.aue.devtunnels.ms/api/users/2/cart', {
+        cache: 'no-cache',
+    });
+    const cartProducts = await response.json();
 
     return (
-        <>
-            <h1>Shopping Cart</h1>
-            {cardProducts.map(product => (
-                <Link key={product.id} href={'products/' + product.id}>
-                    <h2>{product.name}</h2>
-                    <p>${product.price.toFixed(2)}</p>
-                </Link>
-            ))}
-        </>
+        <div>
+            <ShoppingCartList initialCardProducts={cartProducts} />
+        </div>
     )
 }
