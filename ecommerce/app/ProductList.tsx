@@ -19,7 +19,24 @@ export default function ProductsList({products, initialCartProducts}: {products:
 
         const updatedCartProducts = await response.json();
         setCartProducts(updatedCartProducts);
+    }
 
+    async function removeFromCart(productId: string) {
+        const response = fetch('https://wgbk62qn-3000.aue.devtunnels.ms/api/users/2/cart', {
+            method: 'DELETE',
+            body: JSON.stringify({ productId }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const updatedCartProducts = await response.json();
+        setCartProducts(updatedCartProducts);
+    }
+
+    // helper funciton to check if a product is in the cart
+    function isInCart(productId: string) {
+        return cartProducts.some(product => product.id === productId);
     }
 
     return (
@@ -31,11 +48,21 @@ export default function ProductsList({products, initialCartProducts}: {products:
                     </div>
                     <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
                     <p className="text-gray-600">${product.price.toFixed(2)}</p>
-                    <button onClick={(e) => {
-                        e.preventDefault(); // Prevent the default link behavior
-                        addToCart(product.id)
-                        }}>Add to Cart
-                    </button>
+                    {isInCart(product.id) ? (
+                        <button onClick={(e) => {
+                            e.preventDefault(); // Prevent the default link behavior
+                            removeFromCart(product.id)
+                        }} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            Remove from Cart
+                        </button>
+                    ) : (
+                        <button onClick={(e) => {
+                            e.preventDefault(); // Prevent the default link behavior
+                            addToCart(product.id)
+                        }} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            Add to Cart
+                        </button>
+                    )}
                 </Link>
             ))}
         </div>

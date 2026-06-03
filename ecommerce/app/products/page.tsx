@@ -6,7 +6,9 @@ export default async function ProductsPage() {
     const products = await response.json();
 
     // load the shopping cart from this product page
-    const response2 = await fetch('https://wgbk62qn-3000.aue.devtunnels.ms/api/users/2/cart');
+    const response2 = await fetch('https://wgbk62qn-3000.aue.devtunnels.ms/api/users/2/cart', {
+        cache: 'no-cache', // Ensure we get the latest cart data on each request
+    });
     const cartProducts = await response2.json();
 
     return (
