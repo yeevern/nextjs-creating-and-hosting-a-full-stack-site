@@ -6,11 +6,10 @@ import { Product } from '../product-data';
 import Link from 'next/link';
 
 export default function ShoppingCartList({ initialCardProducts }: { initialCardProducts: Product[] }) {
-    const [cartProducts] = useState(initialCardProducts);
-    const [_, setCartProducts] = useState(initialCardProducts);
+    const [cartProducts, setCartProducts] = useState(initialCardProducts);
 
     async function removeFromCart(productId: string) {
-        const response = fetch('https://wgbk62qn-3000.aue.devtunnels.ms/api/users/2/cart', {
+        const response = await fetch('https://wgbk62qn-3000.aue.devtunnels.ms/api/users/2/cart', {
             method: 'DELETE',
             body: JSON.stringify({ productId }),
             headers: {
