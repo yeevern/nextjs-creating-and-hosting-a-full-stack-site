@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+# Ecommerce Next.js App
+
+## 🚀 Live Demo
+
+You can view the live project here:
+👉 [https://nextjs-ecommerce-chi-umber.vercel.app](https://nextjs-ecommerce-chi-umber.vercel.app)
+
 ## Getting Started
 
 First, run the development server:
