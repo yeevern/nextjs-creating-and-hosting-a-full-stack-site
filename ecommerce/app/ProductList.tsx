@@ -9,7 +9,7 @@ export default function ProductsList({products, initialCartProducts}: {products:
     const [cartProducts, setCartProducts] = useState(initialCartProducts);
 
     async function addToCart(productId: string) {
-        const response = await fetch('https://wgbk62qn-3000.aue.devtunnels.ms/api/users/2/cart', {
+        const response = await fetch(process.env.NEXT_PUBLIC_SITE_URL + '/api/users/2/cart', {
             method: 'POST',
             body: JSON.stringify({ productId }),
             headers: {
@@ -22,7 +22,7 @@ export default function ProductsList({products, initialCartProducts}: {products:
     }
 
     async function removeFromCart(productId: string) {
-        const response = await fetch('https://wgbk62qn-3000.aue.devtunnels.ms/api/users/2/cart', {
+        const response = await fetch(process.env.NEXT_PUBLIC_SITE_URL + '/api/users/2/cart', {
             method: 'DELETE',
             body: JSON.stringify({ productId }),
             headers: {
