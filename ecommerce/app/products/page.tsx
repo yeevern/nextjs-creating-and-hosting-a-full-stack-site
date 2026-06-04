@@ -1,6 +1,8 @@
 import ProductsList from '../ProductList';
 // import { products } from '../product-data';
 
+export const dynamic = 'force-dynamic';
+
 export default async function ProductsPage() {
     const response = await fetch(process.env.NEXT_PUBLIC_SITE_URL + '/api/products');
     const products = await response.json();
